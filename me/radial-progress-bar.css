@@ -1,0 +1,22 @@
+svg {
+   display: inline-flex;
+   vertical-align: bottom;
+   width: 120px;
+   height: 120px;
+}
+
+circle {
+   stroke: rgba(#fff, 0.25);
+   stroke-width: 5px;
+   stroke-dasharray: 0;
+   fill: none;
+}
+
+.meter {
+   stroke-width: 5px;
+   stroke: goldenrod;
+   fill: none;
+   transition: stroke-dashoffset 1s cubic-bezier(0.43, 0.41, 0.22, 0.91);
+   transform-origin: center center;
+   transform: rotate(-90deg) scaleX(-1);
+}

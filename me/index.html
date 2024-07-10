@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="./index.css">
+<link rel="stylesheet" href="./radial-progress-bar.css">
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+
+
+<head>
+    <title>Data Entries</title>
+</head>
+
+<body>
+    <div class="wrapper" timestamp="1621101622000">
+        <div id="heartRate" class="card">
+            <div class="card-title">@AlexInABox > health > heart rate</div>
+            <div class="container">
+                <p id="heartRateValue" style="margin-bottom: 5px;">0</p>
+            </div>
+            <div id="heartRateLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="oxygenSaturation" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > health > oxygen saturation</div>
+            <div class="container" style="padding-bottom: 10px;">
+                <div class="w3-light-grey w3-round">
+                    <div id="oxygenSaturation-bar" class="w3-container w3-round w3-black" style="width: 0%; ">0%</div>
+                </div>
+
+            </div>
+            <div id="oxygenSaturationLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="speed" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > health > speed</div>
+            <div class="container">
+                <p id="speedValue" style="margin-bottom: 5px;">0.0 m/s</p>
+            </div>
+            <div id="speedLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="valorant" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > games > valorant</div>
+            <div class="container" style="text-align: center;">
+                <h1 id="valorant.username" style="margin-bottom: 0px; padding-bottom: 0px">Chiwooo#cutie</h1>
+                <div>
+                    <svg id="valorant.progress" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"
+                        preserveAspectRatio="none" data-value="89">
+                        <circle r="45" cx="50" cy="50" />
+                        <path id="valorant.mmrMeter" class="meter" d="M5,50a45,45 0 1,0 90,0a45,45 0 1,0 -90,0"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-dashoffset="282.78302001953125"
+                            stroke-dasharray="282.78302001953125" />
+                        <image id="valorant.rankIcon" x="20" y="20" width="60" height="60"
+                            xlink:href="https://media.valorant-api.com/competitivetiers/564d8e28-c226-3180-6285-e48a390db8b1/12/largeicon.png" />
+                    </svg>
+                </div>
+                <h3 id="valorant.rank" style="margin-top: 0px; padding-top: 0px">Iron 1 - 10RR</h3>
+            </div>
+            <div id="valorantLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="netflix" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > other > netflix</div>
+            <div class="container" style="height: auto; align-content: center;">
+                <a id="netflixCoverLink" target="_blank">
+                    <img id="netflixCover" class="netflixCover"
+                        style="width: 100%; height: 100%; padding-bottom: 10px;"></img>
+                </a>
+                <div id="netflixShowName" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center;">
+                    🎬 The End of Evangelion
+                </div>
+            </div>
+            <div id="netflixLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="plex" class="card" timestamp="1921101622000">
+            <div class="card-title">@AlexInABox > other > plex</div>
+            <div class="container" style="height: auto; align-content: center;">
+                <a id="plexCoverLink" target="_blank">
+                    <img id="plexCover" class="plexCover hoverMe"
+                        style="width: 100%; height: 100%; padding-bottom: 10px;"></img>
+                </a>
+                <div id="plexShowName" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center;">
+                    🎬 The End of Evangelion
+                </div>
+            </div>
+            <div id="plexLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="location" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > other > location</div>
+            <div class="container"
+                style="position: relative; width: 100%; height: 0; padding-bottom: 100%; overflow: hidden;">
+                <img id="mapbox"
+                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; flex-shrink: 0; padding-bottom: 10px;"></img>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div class="blob green"
+                        style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+                    <img id="memoji" class="memoji"
+                        style="position: relative; width: 150px; height: 150px; z-index: 1;">
+                    </img>
+                    <div id="locationText" class="box"
+                        style="position: absolute; top: 110%; left: 50%; transform: translateX(-50%); width: auto; height: auto; background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; display: inline-block; white-space: nowrap; padding: 2px 10px; z-index: 1;">
+                        📍 Charlottenburg-Wilmersdorf, Germany
+                    </div>
+                </div>
+            </div>
+            <div id="locationLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+
+        </div>
+        <div id="youtube video" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > other > youtube > video</div>
+            <div class="container" style="position: relative; width: 100%; height: auto;">
+                <a id="youtubeVideoURL" target="_blank">
+                    <img id="youtubeVideoThumbnail" class="youtubeVideoThumbnail hoverMe"
+                        style="width: 100%; height: 100%; padding-bottom: 10px;" src="https://i.ytimg.com"></img>
+                </a>
+
+                <div id="youtubeVideoTitle" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center; margin-bottom: 3px;">
+                    How to make a website 101
+                </div>
+                <div id="youtubeVideoChannel" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center;">
+                    Fancy Channel
+                </div>
+
+            </div>
+            <div id="youtubeVideoLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="youtube music" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > other > youtube > music</div>
+            <div class="container" style="position: relative; width: 100%; height: auto;">
+                <a id="youtubeMusicURL" target="_blank">
+                    <img id="youtubeMusicThumbnail" class="youtubeMusicThumbnail hoverMe"
+                        style="width: 100%; height: 100%; padding-bottom: 10px;" src="https://i.ytimg.com"></img>
+                </a>
+                <div id="youtubeMusicTitle" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center; margin-bottom: 3px;">
+                    How to make a website 101
+                </div>
+                <div id="youtubeMusicArtist" class="box"
+                    style="background-color: rgba(0, 0, 0, 0.5); border-radius: 10px 10px 10px 10px; padding: 2px 10px; mix-blend-mode: difference; text-align: center; align-self: center;">
+                    Fancy Channel
+                </div>
+            </div>
+            <div id="youtubeMusicLastUpdated" class="card-title footer">Last refresh: 5min ago</div>
+        </div>
+        <div id="duolingo" class="card" timestamp="1621101622000">
+            <div class="card-title">@AlexInABox > learning > Duolingo</div>
+
+            <div
+                style="text-align: center; display: flex; flex-direction: column; align-items: center; margin-bottom: 10px;">
+                <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <img id="duolingoAvatar" src="./assets/duo.svg" alt="My Avatar"
+                        style="width: 50px; height: 50px; border-radius: 10%;">
+                    <h2 id="duolingoUsername" style="margin-bottom: 5px; font-weight: bold; margin-left: 10px;">
+                        AlexInABox
+                    </h2>
+                    <img id="duolingoIcon" src="./assets/duo.svg" alt="Duolingo" style="width: 60px; height: 60px;">
+                </div>
+                <img id="duolingoLanguageFlag" src="./assets/duo.svg" alt="Language Flag"
+                    style="width: 100px; height: 100px;">
+                <h2 id="duolingoStreakXP" style="margin-top: 0px; padding-top: 0px;">12 &#128293; - 2930 XP</h2>
+            </div>
+            <div id="duolingoLastUpdated" class="card-title footer" style="text-align: left;">Last update: 5min ago
+            </div>
+        </div>
+
+
+
+    </div>
+    <footer style="justify-content: center">
+        <p style="text-align: center">© 2024 AlexInABox - Backround by <a href="http://www.blancavinas.es/"
+                target="_blank">Blanca
+                Viñass</a>
+        </p>
+    </footer>
+</body>
+<script async src="./index.js"></script>
+
+</html>
