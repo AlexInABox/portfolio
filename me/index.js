@@ -188,7 +188,7 @@ function getLatestNetflixInformation() {
 
 function getLatestPlexInformation() {
     document.getElementById("plexShowName").innerHTML = `🎬 ${data.plex.lastWatched.title}`;
-    document.getElementById("plexCover").src = "./custom-hds" + data.plex.lastWatched.cover;
+    document.getElementById("plexCover").src = "./custom-hds/plex_covers" + data.plex.lastWatched.cover;
     document.getElementById("plexCoverLink").href = data.plex.lastWatched.publicURL;
     document.getElementById("plex").setAttribute('timestamp', data.plex.lastWatched.lastUpdate);
 }
