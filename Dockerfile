@@ -1,3 +1,5 @@
-FROM lipanski/docker-static-website:latest
-
-COPY ../../Desktop/temp .
+COPY public/ /portfolio/public
+COPY src/ /portfolio/src
+COPY package.json /portfolio/
+RUN npm install
+CMD ["npm", "start"]
