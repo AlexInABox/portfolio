@@ -1,3 +1,3 @@
 FROM lipanski/docker-static-website:latest
 
-COPY . .
+COPY ../../Desktop/temp .
