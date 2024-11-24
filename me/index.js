@@ -51,14 +51,17 @@ function reorderElements() {
 }
 
 async function fetchData() {
-    console.log("getting data");
-    return new Promise((obj) => {
-        fetch('./custom-hds/presence.json', { cache: "no-store" })
-            .then(res => res.json())
-            .then(data => {
-                return obj(data)
-            })
-    })
+    console.log("Getting data...");
+    return fetch('https://alexinabox.de/custom-hds', { method: 'GET', cache: 'no-store' })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .catch(error => {
+            console.error("Error fetching data:", error);
+        });
 }
 
 async function patchLiveContent() {
