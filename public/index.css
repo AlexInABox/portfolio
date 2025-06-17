@@ -1,18 +1,72 @@
 body {
   background: black;
+  font-family: monospace;
+  zoom: 1.5;
 }
 
-h1 {
+/* On portrait mode, we are cutesy nice and zoom out a bit */
+@media (orientation: portrait) {
+  body {
+    zoom: 0.8;
+  }
+}
+
+h1,
+p {
   color: rgb(255, 255, 255);
   text-align: center;
 }
 
+#title {
+  width: 100%;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#title img {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 1rem;
+}
+
+#subtitle {
+  margin-top: -1rem;
+}
+
 #centered-table {
-  border: 10px solid rgb(12, 22, 119);
-  width: 50%;
+  width: 70%;
   margin: 0 auto;
-  padding: 20px;
-  background-color: rgb(129, 57, 57);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-collapse: collapse;
+}
+
+#centered-table td,
+th {
+  border: 5px solid rgb(255, 255, 255);
+  padding: 1rem;
+  padding-top: 2.5rem;
+  text-align: center;
+  vertical-align: top;
+}
+
+.cellTitle {
+  margin-left: -1rem;
+  margin-top: -2.5rem;
+  padding: 0.5rem;
+  color: rgb(255, 255, 255);
+  float: left;
+  border-style: solid;
+  border-color: rgb(255, 255, 255);
+  border-left: 0px;
+  border-top: 0px;
+}
+
+/* Webring styles */
+.webringImage {
+  width: 100px;
 }
 
 /* Starry background */
