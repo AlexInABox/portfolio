@@ -1,5 +1,5 @@
 const container = document.getElementById("starBackground");
-const numStars = 300; // Reduced from 200
+const numStars = 300;
 
 for (let i = 0; i < numStars; i++) {
   const scale = Math.random() * 2 + 1;
