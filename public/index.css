@@ -19,6 +19,11 @@ body {
     zoom: 0.5;
   }
 }
+@media screen and (max-width: 500px) {
+  body {
+    zoom: 0.4;
+  }
+}
 
 h1,
 p {
