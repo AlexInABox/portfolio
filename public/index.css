@@ -4,27 +4,6 @@ body {
   zoom: 1;
 }
 
-@media screen and (max-width: 700px) {
-  body {
-    zoom: 0.7;
-  }
-}
-@media screen and (max-width: 650px) {
-  body {
-    zoom: 0.6;
-  }
-}
-@media screen and (max-width: 600px) {
-  body {
-    zoom: 0.5;
-  }
-}
-@media screen and (max-width: 500px) {
-  body {
-    zoom: 0.4;
-  }
-}
-
 h1,
 p {
   color: rgb(255, 255, 255);
@@ -32,8 +11,7 @@ p {
 }
 
 #title {
-  scale: 1;
-  width: 100%;
+  max-width: 100%;
   margin-top: 2rem;
   margin-bottom: 1rem;
   display: flex;
@@ -69,6 +47,28 @@ th {
   padding-top: 2.5rem;
   text-align: center;
   vertical-align: top;
+}
+
+@media screen and (orientation: portrait) {
+  #centered-table,
+  #centered-table tr,
+  #centered-table td {
+    display: block;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+
+  #title {
+    font-size: medium;
+  }
+
+  #title img {
+    width: 3.5rem;
+    height: 3.5rem;
+
+    margin: 1rem;
+  }
 }
 
 .cellTitle {
