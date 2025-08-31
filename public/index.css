@@ -124,6 +124,7 @@ th {
   background: white;
   border-radius: 50%;
   animation: twinkle 1.5s infinite alternate;
+  transform: translate(-50%, -50%);
 }
 
 .star::before {
@@ -135,7 +136,13 @@ th {
   height: 100%;
   background: white;
   border-radius: 50%;
+}
+
+.detector {
+  position: relative;
   transform: translate(-50%, -50%);
+  opacity: 0.1;
+  border-radius: 50%;
 }
 
 @keyframes twinkle {
