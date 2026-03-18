@@ -116,3 +116,20 @@ th {
   left: 0;
   z-index: -1;
 }
+
+button {
+  border: white;
+  border-width: 5px;
+  color: black;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  background: white;
+}
+
+button.activeContentButton {
+  background: rgba(255, 255, 255, 0.4);
+  color: white;
+}

@@ -90,3 +90,13 @@ document.body.onmousedown = function () {
 document.body.onmouseup = function () {
   mouseDown = false;
 };
+
+function switchContent(content) {
+  const contentButtons = document.getElementsByClassName("contentButtons");
+  for (let button of contentButtons) {
+    button.className = "contentButtons";
+    if (button.id == content) {
+      button.className = "activeContentButton contentButtons"
+    }
+  }
+} 
