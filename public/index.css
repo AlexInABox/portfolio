@@ -178,3 +178,36 @@ button.activeContentButton {
 #blogContent {
   overflow-y: auto;
 }
+
+.blogImage {
+  display: block;
+  margin-left: 2rem;
+  margin-right: auto;
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+  max-width: 20rem;
+  max-height: 20rem;
+}
+
+.blogTextContainer h1 {
+  margin-top: 0;
+  text-align: right;
+}
+
+.blogTextContainer p {
+  display: block;
+  text-align: justify;
+  word-break: break-word;
+}
+
+.blogHtml {
+  margin-left: auto;
+  margin-right: 2rem;
+}
+
+.singleBlogContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}

@@ -127,14 +127,43 @@ async function findBlogs() {
   let i = 1;
 
   while (true) {
-    const url = `/blogs/${i}`;
+    const url = `/blogs/${i}.json`;
     const res = await fetch(url, { method: 'HEAD' }); // just check if it exists
     if (!res.ok) break; // stop on first 404
     blogs.push(i);
     i++;
   }
 
-  console.log('Found blogs:', blogs);
+  return blogs;
 }
 
-findBlogs();
+async function loadBlogs() {
+  const blogIds = await findBlogs();
+
+  for (const blogId of blogIds) {
+    const blogJson = await fetch(`/blogs/${blogId}.json`);
+    if (!blogJson.ok) continue;
+
+    const blogContainer = document.createElement('div');
+    blogContainer.className = 'singleBlogContainer';
+
+    const img = document.createElement('img');
+    img.src = `/blogs/${blogId}.png`;
+    img.className = 'blogImage';
+    img.alt = 'blog image';
+    img.onerror = () => img.remove();
+
+    blogContainer.appendChild(img);
+
+    const data = await blogJson.json();
+    const blogTextContainer = document.createElement('div');
+    blogTextContainer.className = 'blogTextContainer';
+    blogTextContainer.innerHTML += `<h1 class="blogHtml">${data.date}</h1>`;
+    blogTextContainer.innerHTML += `<p class="blogHtml">${data.html}</p>`;
+    blogContainer.appendChild(blogTextContainer);
+
+    blogContent.appendChild(blogContainer);
+  }
+}
+
+loadBlogs();
