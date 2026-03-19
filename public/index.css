@@ -154,25 +154,20 @@ button.activeContentButton {
 }
 
 /* Make scrollbars light to match the overall design */
-/* For Firefox */
 * {
-  scrollbar-color: #ccc #000; /* thumb color, track color */
-  scrollbar-width: auto; /* or thin */
+  scrollbar-color: #ccc #000;
+  scrollbar-width: auto;
 }
-
-/* For WebKit browsers (Chrome, Edge, Safari) */
 *::-webkit-scrollbar {
   width: 12px;
 }
-
 *::-webkit-scrollbar-track {
-  background: #000; /* track matches your dark background */
+  background: #000;
 }
-
 *::-webkit-scrollbar-thumb {
-  background-color: #ccc; /* light thumb */
+  background-color: #ccc;
   border-radius: 6px;
-  border: 3px solid #000; /* gives some spacing around thumb */
+  border: 3px solid #000;
 }
 
 #blogContent {
@@ -181,12 +176,11 @@ button.activeContentButton {
 
 .blogImage {
   display: block;
-  margin-left: 2rem;
   margin-right: auto;
   margin-top: 0rem;
   margin-bottom: 1rem;
-  max-width: 20rem;
-  max-height: 20rem;
+  max-width: 100%;
+  cursor: pointer;
 }
 
 .blogTextContainer h1 {
@@ -198,6 +192,8 @@ button.activeContentButton {
   display: block;
   text-align: justify;
   word-break: break-word;
+  align-items: right;
+  font-size: 0.9rem;
 }
 
 .blogHtml {
@@ -206,8 +202,14 @@ button.activeContentButton {
 }
 
 .singleBlogContainer {
+  padding-left: 2rem;
+
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 3fr;
   gap: 1rem;
   margin-bottom: 2rem;
+}
+
+.singleBlogContainer > :only-child {
+  grid-column: 1 / -1; /* If there is no image, we the text to take full width!! */
 }

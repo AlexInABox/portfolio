@@ -138,7 +138,7 @@ async function findBlogs() {
 }
 
 async function loadBlogs() {
-  const blogIds = await findBlogs();
+  const blogIds = (await findBlogs()).reverse();
 
   for (const blogId of blogIds) {
     const blogJson = await fetch(`/blogs/${blogId}.json`);
@@ -148,22 +148,49 @@ async function loadBlogs() {
     blogContainer.className = 'singleBlogContainer';
 
     const img = document.createElement('img');
-    img.src = `/blogs/${blogId}.png`;
+    img.src = `/blogs/${blogId}.webp`;
     img.className = 'blogImage';
     img.alt = 'blog image';
     img.onerror = () => img.remove();
+    img.onclick = () => {
+      window.open(`/blogs/${blogId}.png`, '_blank');
+    }
 
     blogContainer.appendChild(img);
 
     const data = await blogJson.json();
     const blogTextContainer = document.createElement('div');
     blogTextContainer.className = 'blogTextContainer';
-    blogTextContainer.innerHTML += `<h1 class="blogHtml">${data.date}</h1>`;
-    blogTextContainer.innerHTML += `<p class="blogHtml">${data.html}</p>`;
-    blogContainer.appendChild(blogTextContainer);
 
+    blogTextContainer.innerHTML += `<h1 class="blogHtml">${data.date}</h1>`;
+    if (isToday(data.date)) {
+      blogTextContainer.innerHTML = `<h1 class="blogHtml">Today</h1>`;
+    }
+    if (isYesterday(data.date)) {
+      blogTextContainer.innerHTML = `<h1 class="blogHtml">Yesterday</h1>`;
+    }
+
+    for (const paragraphs of data.html) {
+      blogTextContainer.innerHTML += `<p class="blogHtml">${paragraphs}</p>`;
+    }
+    blogContainer.appendChild(blogTextContainer);
     blogContent.appendChild(blogContainer);
   }
 }
 
 loadBlogs();
+
+
+function isToday(dateString) {
+  const [day, month, year] = dateString.split('.').map(Number);
+  const today = new Date();
+  console.log(day, month, year, today.getDate(), today.getMonth() + 1, today.getFullYear());
+  return day === today.getDate() && month === today.getMonth() + 1 && year === today.getFullYear();
+}
+
+function isYesterday(dateString) {
+  const [day, month, year] = dateString.split('.').map(Number);
+  const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
+  return day === yesterday.getDate() && month === yesterday.getMonth() + 1 && year === yesterday.getFullYear();
+}
