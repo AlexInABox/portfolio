@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "wrangler dev"
+    "start": "wrangler dev --live-reload"
   },
   "devDependencies": {
     "wrangler": "^4.75.0"

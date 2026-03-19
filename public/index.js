@@ -91,12 +91,50 @@ document.body.onmouseup = function () {
   mouseDown = false;
 };
 
-function switchContent(content) {
+function switchContent(contentButtonId) {
   const contentButtons = document.getElementsByClassName("contentButtons");
   for (let button of contentButtons) {
     button.className = "contentButtons";
-    if (button.id == content) {
+    if (button.id == contentButtonId) {
       button.className = "activeContentButton contentButtons"
     }
   }
-} 
+
+  const contents = document.getElementsByClassName("content");
+  const contentId = contentButtonId.replace('Button', '');
+  for (let content of contents) {
+    content.className = "content hidden";
+    if (content.id == contentId) {
+      content.className = "content";
+    }
+  }
+}
+
+
+
+const blogContent = document.getElementById('blogContent');
+const td = blogContent.parentElement;
+// If the cells height changes, we make sure the blog content doesnt extend too far, as to not grow the td again.
+const observer = new ResizeObserver(() => {
+  blogContent.style.maxHeight = td.clientHeight * 0.9 + 'px';
+});
+
+observer.observe(td);
+
+
+async function findBlogs() {
+  const blogs = [];
+  let i = 1;
+
+  while (true) {
+    const url = `/blogs/${i}`;
+    const res = await fetch(url, { method: 'HEAD' }); // just check if it exists
+    if (!res.ok) break; // stop on first 404
+    blogs.push(i);
+    i++;
+  }
+
+  console.log('Found blogs:', blogs);
+}
+
+findBlogs();
