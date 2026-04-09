@@ -1,0 +1,9 @@
+services:
+  blogslopbot:
+    container_name: blogslopbot
+    image: ghcr.io/alexinabox/blogslopbot:latest
+    env_file: .env
+    volumes:
+      - ./privkey:/run/secrets/github_ssh_key:ro
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped

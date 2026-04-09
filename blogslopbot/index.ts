@@ -24,9 +24,8 @@ const bot = new TelegramBot(telegramToken, { polling: true });
 
 
 bot.on('message', async (msg: TelegramBot.Message) => {
+    console.log(`Received message from ${msg.from?.id}: ${msg.text || msg.caption || '[non-text message]'}`);
     const chatId: TelegramBot.ChatId = msg.chat.id;
-    console.log(msg.from!.id);
-    console.log(allowedFromId);
     if (msg.from!.id !== allowedFromId) {
         bot.sendMessage(chatId, 'Who tf are you?');
         return;
@@ -73,6 +72,7 @@ bot.on('message', async (msg: TelegramBot.Message) => {
         bot.sendMessage(chatId, 'Sorry, there was an error pushing the changes to the repository.');
         return;
     }
+    console.log(`Successfully added blog ${blogId} and pushed to repository.`);
 });
 
 
