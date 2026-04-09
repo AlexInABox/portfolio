@@ -36,6 +36,11 @@ bot.on('message', async (msg: TelegramBot.Message) => {
         return;
     }
 
+    if (msg.text && msg.text.startsWith('/')) {
+        // Ignore commands!
+        return;
+    }
+
     // Clone a fresh copy so each message is applied against the current repo state.
     try {
         fs.rmSync(repositoryPath, { recursive: true, force: true });
