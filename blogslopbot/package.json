@@ -1,0 +1,20 @@
+{
+    "name": "blogslopbot",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "ts-node-dev --respawn --transpile-only index.ts"
+    },
+    "devDependencies": {
+        "@types/node": "^25.5.2",
+        "@types/node-telegram-bot-api": "^0.64.14",
+        "@types/request": "^2.48.13",
+        "ts-node-dev": "^2.0.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.1",
+        "node-telegram-bot-api": "^0.67.0",
+        "sharp": "^0.34.5",
+        "typescript": "^6.0.2"
+    }
+}

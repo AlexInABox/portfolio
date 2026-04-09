@@ -1,9 +1,10 @@
 .vscode
 node_modules
-**/node_modules
-dist
-**/dist
+tmp
 .DS_Store
-**/.DS_Store
 .wrangler
-**/.wrangler
+**/dist
+privkey
+**/privkey
+.env
+**/.env
