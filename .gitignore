@@ -1,5 +1,9 @@
 .vscode
 node_modules
-tmp
+**/node_modules
+dist
+**/dist
 .DS_Store
+**/.DS_Store
 .wrangler
+**/.wrangler
