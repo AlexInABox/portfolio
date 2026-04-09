@@ -47,7 +47,7 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v7
         with:
-          context: .
+          context: blogslopbot
           file: blogslopbot/Dockerfile
           push: true
           tags: ${{ steps.tags.outputs.tags }}
