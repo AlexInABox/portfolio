@@ -12,10 +12,6 @@ permissions:
   contents: read
   packages: write
 
-defaults:
-  run:
-    working-directory: blogslopbot
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
