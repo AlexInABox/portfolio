@@ -161,24 +161,6 @@ function getLatestBlogId(repoPath = repositoryPath): number {
     return blogIds.length ? Math.max(...blogIds) : 0;
 }
 
-function requiredEnv(name: string): string {
-    const value = process.env[name];
-    if (!value) {
-        throw new Error(`Missing required environment variable: ${name}`);
-    }
-
-    return value;
-}
-
-function parseChatId(value: string): TelegramBot.ChatId {
-    const parsed = Number(value);
-    if (!Number.isInteger(parsed)) {
-        throw new Error('TELEGRAM_ALLOWED_CHAT_ID must be an integer');
-    }
-
-    return parsed as TelegramBot.ChatId;
-}
-
 function buildGitEnvironment(): NodeJS.ProcessEnv {
     const privateKeyPath = process.env.GIT_SSH_PRIVATE_KEY_PATH!;
 
