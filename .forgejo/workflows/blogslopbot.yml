@@ -19,6 +19,8 @@ jobs:
       - uses: actions/checkout@v6
 
       - uses: docker/setup-buildx-action@v4
+        env:
+          DOCKER_HOST: tcp://docker-in-docker:2375
 
       - id: downcase
         name: downcase REPO_OWNER
