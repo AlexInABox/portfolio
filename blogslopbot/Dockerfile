@@ -14,3 +14,6 @@ COPY index.ts ./
 
 ENV NODE_ENV=production
 CMD ["npm", "start"]
+
+
+LABEL org.opencontainers.image.source=https://git.zeitvertreib.vip/alexinabox/portfolio
