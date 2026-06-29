@@ -5,12 +5,8 @@ on:
   push:
     branches:
       - main
-#    paths:
-#      - "blogslopbot/**"
-
-permissions:
-  contents: read
-  packages: write
+    paths:
+      - 'blogslopbot/**'
 
 jobs:
   deploy:
