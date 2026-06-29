@@ -31,7 +31,7 @@ jobs:
         with:
           registry: git.zeitvertreib.vip
           username: ${{ steps.downcase.outputs.REPO_OWNER }}
-          password: ${{ secrets.FORGEJO_TOKEN }}
+          password: ${{ secrets.PACKAGE_PUSH_PAT }}
 
       - id: tags
         run: |
