@@ -5,8 +5,8 @@ on:
   push:
     branches:
       - main
-#    paths:
-#      - "frontend/**"
+    paths:
+      - 'frontend/**'
 
 defaults:
   run:
