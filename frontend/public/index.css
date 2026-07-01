@@ -146,11 +146,6 @@ button.activeContentButton {
 }
 
 .mailmeFooter {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  margin-bottom: 1.5rem; /* 2rem would align perfectly with the projects contents, but I think it looks better a bit closer to the bottom */
 }
 
 /* Make scrollbars light to match the overall design */

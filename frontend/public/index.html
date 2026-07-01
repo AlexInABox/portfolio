@@ -33,11 +33,12 @@
               id="content1Button"
               onclick="switchContent('content1Button')"
             >
-              home</button
-            ><button type="button" class="contentButtons" id="content2Button" onclick="switchContent('content2Button')">
+              home
+            </button>
+            <button type="button" class="contentButtons" id="content2Button" onclick="switchContent('content2Button')">
               blog
-            </button></span
-          >
+            </button>
+          </span>
           <div id="content1" class="content">
             <img class="showcaseImage" fetchpriority="high" src="assets/showcase.webp" />
           </div>
@@ -46,10 +47,6 @@
 
             <div id="blogContent"></div>
           </div>
-          <p class="mailmeFooter">
-            Head full of rage and hate? Mail me:
-            <nobr><a href="mailto:webmaster@alexinabox.de" class="mailMeLink">webmaster (at) alexinabox.de</a></nobr>
-          </p>
         </td>
 
         <td style="padding-top: 1rem; width: 35%">
@@ -74,7 +71,7 @@
         </td>
       </tr>
       <tr>
-        <td>
+        <td rowspan="2">
           <span class="cellTitle">projects:</span>
           <p class="projectItem" title="A browser extension to view other users' cursors on the page you're on.">
             CursorConnect
@@ -148,15 +145,21 @@
               title="brainmade.org"
               alt="https://brainmade.org/"
           /></a>
-        </td>
-        <td>
-          <span class="cellTitle" title="cowboy">are you living in the real world?</span>
-          <p style="white-space: normal; word-break: break-word">
-            U2FsdGVkX1+a0A9vFlo9qAaC4dGnh4tSJ2pd8eWXb1nO9XBCfOGNUMrbd1VP4CvAWjZBDLlR3ZHna+H9ea28xw==
-          </p>
+          <iframe
+            src="//incr.easrng.net/badge?key=alexinabox.de"
+            style="background: url(//incr.easrng.net/bg.gif)"
+            title="increment badge"
+            width="88"
+            height="31"
+            frameborder="0"
+          ></iframe>
         </td>
       </tr>
     </table>
+    <p class="mailmeFooter">
+      Head full of rage and hate? Mail me:
+      <nobr><a href="mailto:webmaster@alexinabox.de" class="mailMeLink">webmaster (at) alexinabox.de</a></nobr>
+    </p>
     <script src="index.js" defer fetchpriority="low"></script>
   </body>
 </html>
