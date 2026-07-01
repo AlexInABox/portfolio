@@ -38,6 +38,9 @@
             <button type="button" class="contentButtons" id="content2Button" onclick="switchContent('content2Button')">
               blog
             </button>
+            <button type="button" class="contentButtons" id="content3Button" onclick="switchContent('content3Button')">
+              blogbloat
+            </button>
           </span>
           <div id="content1" class="content">
             <img class="showcaseImage" fetchpriority="high" src="assets/showcase.webp" />
@@ -46,6 +49,12 @@
             <h1 title="low-effort blogging" style="cursor: help">Blogslop</h1>
 
             <div id="blogContent"></div>
+          </div>
+          <div id="content3" class="content hidden">
+            <h1 title="high-effort blogging" style="cursor: help">Blogbloat</h1>
+
+            <div id="blogBloatContent"></div>
+            <img src="assets/underConstruction.gif" alt="Under Construction" />
           </div>
         </td>
 
@@ -161,5 +170,6 @@
       <nobr><a href="mailto:webmaster@alexinabox.de" class="mailMeLink">webmaster (at) alexinabox.de</a></nobr>
     </p>
     <script src="index.js" defer fetchpriority="low"></script>
+    <script src="blogbloat.js" defer fetchpriority="low"></script>
   </body>
 </html>
