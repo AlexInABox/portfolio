@@ -15,6 +15,9 @@ const layer1Size = 0.5;
 const layer2Size = 1;
 const layer3Size = 1.5;
 
+let listOfConstellation1Group = []; // This is the list of indexes of the stars in the layer3 list!
+
+
 function initializeBackground() {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   listOfLayer1Stars = [[0, 0]];
@@ -36,6 +39,20 @@ function initializeBackground() {
   place(listOfLayer1Stars, layer1Size);
   place(listOfLayer2Stars, layer2Size);
   place(listOfLayer3Stars, layer3Size);
+
+
+  const randomConstellationX = (Math.random() * ctx.canvas.width) % ctx.canvas.width;
+  const randomConstellationY = (Math.random() * ctx.canvas.height) % ctx.canvas.height;
+  const threshold = 125; //distance from constellation center to consider a star part of the constellation
+
+  for (let i = 0; i < listOfLayer3Stars.length; i++) {
+    if (listOfConstellation1Group.length >= 7) break; // Limit the number of stars in the constellation
+    const [x, y] = listOfLayer3Stars[i];
+    const distance = Math.sqrt((x - randomConstellationX) ** 2 + (y - randomConstellationY) ** 2);
+    if (distance < threshold) {
+      listOfConstellation1Group.push(i);
+    }
+  }
 }
 initializeBackground();
 
@@ -65,6 +82,28 @@ function moveStars() {
   move(listOfLayer1Stars, 0.25, layer1Size);
   move(listOfLayer2Stars, 0.45, layer2Size);
   move(listOfLayer3Stars, 0.65, layer3Size);
+
+  let lastPosition = { x: listOfLayer3Stars[listOfConstellation1Group[0]][0], y: listOfLayer3Stars[listOfConstellation1Group[0]][1] };
+  ctx.beginPath();
+  ctx.moveTo(lastPosition.x, lastPosition.y);
+
+  for (let i = 1; i < listOfConstellation1Group.length; i++) {
+    const [x, y] = listOfLayer3Stars[listOfConstellation1Group[i]];
+
+    // If line is too long, skip drawing it
+    const distance = Math.sqrt((x - lastPosition.x) ** 2 + (y - lastPosition.y) ** 2);
+    if (distance > 200) {
+      lastPosition = { x, y };
+      ctx.moveTo(x, y);
+      continue;
+    }
+
+    ctx.lineTo(x, y);
+    lastPosition = { x, y };
+  }
+  ctx.strokeStyle = 'red';
+  ctx.lineWidth = 2;
+  ctx.stroke();
 }
 setInterval(() => moveStars(), 10);
 

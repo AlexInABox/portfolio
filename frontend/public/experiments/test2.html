@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <style>
+    body {
+      margin: 0;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    #realBackground {
+      z-index: 1;
+    }
+
+    #scratchOverlay {
+      z-index: 2;
+      pointer-events: auto;
+    }
+  </style>
+  <body>
+    <canvas id="realBackground" width="0" height="0"></canvas>
+    <canvas id="scratchOverlay" width="0" height="0"></canvas>
+    <input type="file" accept="image/*" onchange="openFile(event)" /><br />
+    <script src="test2.js" defer fetchpriority="low"></script>
+  </body>
+</html>
