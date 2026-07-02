@@ -9,10 +9,11 @@ var blogbloatContainerObserver = new MutationObserver(function () {
     }
     loadBlogbloatEntries();
 });
-
 blogbloatContainerObserver.observe(blogbloatContainer, { attributes: true, attributeFilter: ["class"] });
 
-
+if (!blogbloatContainer.classList.contains('hidden')) {
+    loadBlogbloatEntries();
+}
 
 async function loadBlogbloatEntries() {
     const data = await fetch('blogbloat/all.json').then(res => res.json());
@@ -30,11 +31,20 @@ async function loadBlogbloatEntries() {
         entryElement.classList.add('blogbloat-entry');
         entryElement.innerHTML = `<h3>${entry.title}</h3> <p class="blogbloat-date">${entry.date}</p>`;
 
-        // TODO: instead of opening the markdown, replace the blogBloatContent innerHtml with the marked version of the markdown file!
         entryElement.addEventListener('click', () => {
-            window.location.href = entry.path;
+            loadBlogbloatEntry(entry.path);
         });
 
         blogBloatEntryList.appendChild(entryElement);
     });
+}
+
+async function loadBlogbloatEntry(path) {
+    const data = await fetch(path).then(res => res.text());
+    if (!data) {
+        window.alert("The blog entry you are trying to open is broken or empty! Sorry.");
+        return;
+    }
+
+    document.getElementById("blogBloatContent").innerHTML = DOMPurify.sanitize(marked.parse(data)) + "<hr />";
 }

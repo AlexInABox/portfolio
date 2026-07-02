@@ -130,6 +130,16 @@ document.body.onmouseup = function () {
   mouseDown = false;
 };
 
+const contentIdToName = {
+  1: "home",
+  2: "blog",
+  3: "blogbloat"
+}
+
+const contentNameToId = Object.fromEntries(
+  Object.entries(contentIdToName).map(([k, v]) => [v, +k])
+);
+
 function switchContent(contentButtonId) {
   const contentButtons = document.getElementsByClassName("contentButtons");
   for (let button of contentButtons) {
@@ -141,12 +151,26 @@ function switchContent(contentButtonId) {
 
   const contents = document.getElementsByClassName("content");
   const contentId = contentButtonId.replace('Button', '');
+  const contentIdNumber = contentId.replace('content', '');
   for (let content of contents) {
     content.className = "content hidden";
     if (content.id == contentId) {
       content.className = "content";
     }
   }
+
+  if (contentIdNumber != 1) {
+    const url = new URL(window.location);
+    url.hash = contentIdToName[contentIdNumber];
+    history.replaceState(null, "", url);
+  } else {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+}
+
+
+if (contentNameToId[window.location.hash.slice(1)]) {
+  switchContent("content" + contentNameToId[window.location.hash.slice(1)] + "Button");
 }
 
 

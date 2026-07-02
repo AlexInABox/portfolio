@@ -29,3 +29,19 @@
   margin: 0;
   justify-self: end;
 }
+
+#blogBloatContent * {
+  text-align: left;
+  color: white;
+}
+
+#blogBloatContent hr:last-of-type {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+pre {
+  background: #202020ab;
+  padding: 1rem;
+  overflow-x: auto;
+}
