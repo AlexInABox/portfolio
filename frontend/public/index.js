@@ -223,7 +223,6 @@ loadBlogs();
 function isToday(dateString) {
   const [day, month, year] = dateString.split('.').map(Number);
   const today = new Date();
-  console.log(day, month, year, today.getDate(), today.getMonth() + 1, today.getFullYear());
   return day === today.getDate() && month === today.getMonth() + 1 && year === today.getFullYear();
 }
 

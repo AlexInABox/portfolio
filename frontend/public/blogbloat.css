@@ -1,0 +1,31 @@
+#blogBloatEntryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.blogbloat-entry {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem;
+
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.blogbloat-entry h3 {
+  margin: 0;
+  justify-self: start;
+  text-align: left;
+
+  color: white;
+}
+
+.blogbloat-entry .blogbloat-date {
+  margin: 0;
+  justify-self: end;
+}

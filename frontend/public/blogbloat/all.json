@@ -1,0 +1,24 @@
+{
+    "entries": [
+        {
+            "title": "Why do we reason?",
+            "description": "A deepdive into reasoning.",
+            "date": "01.07.2026",
+            "tags": [
+                "philosophy"
+            ],
+            "path": "blogbloat/1.md"
+        },
+        {
+            "title": "ultra-premodern-moon-heroism and its consequences",
+            "description": "Why capitalism will be replaced by ultra-premodern-moon-heroism.",
+            "date": "05.07.2067",
+            "tags": [
+                "philosophy",
+                "space",
+                "technology"
+            ],
+            "path": "blogbloat/2.md"
+        }
+    ]
+}

@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="blogbloat.css" />
+
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
     <title>alexander</title>
@@ -53,8 +55,10 @@
           <div id="content3" class="content hidden">
             <h1 title="high-effort blogging" style="cursor: help">Blogbloat</h1>
 
-            <div id="blogBloatContent"></div>
-            <img src="assets/underConstruction.gif" alt="Under Construction" />
+            <div id="blogBloatContent">
+              <img src="assets/underConstruction.gif" alt="Under Construction" />
+            </div>
+            <div id="blogBloatEntryList"></div>
           </div>
         </td>
 
@@ -169,7 +173,9 @@
       Head full of rage and hate? Mail me:
       <nobr><a href="mailto:webmaster@alexinabox.de" class="mailMeLink">webmaster (at) alexinabox.de</a></nobr>
     </p>
-    <script src="index.js" defer fetchpriority="low"></script>
-    <script src="blogbloat.js" defer fetchpriority="low"></script>
+    <script type="text/javascript" src="cdn/marked.umd.js"></script>
+    <script type="text/javascript" src="cdn/purify.min.js"></script>
+    <script type="text/javascript" src="index.js" defer fetchpriority="low"></script>
+    <script type="text/javascript" src="blogbloat.js" defer fetchpriority="low"></script>
   </body>
 </html>
