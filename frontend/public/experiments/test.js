@@ -4,17 +4,25 @@ const ctx = container.getContext('2d');
 
 const image = new Image();
 image.onload = function () {
-    ctx.canvas.width = image.width;
-    ctx.canvas.height = image.height;
+    const width = 1000;
+    const height = Math.round((width / image.width) * image.height);
+
+    ctx.canvas.width = width;
+    ctx.canvas.height = height;
 
     const imageCanvas = document.createElement('canvas');
     const imageCtx = imageCanvas.getContext('2d');
-    imageCtx.canvas.width = image.width;
-    imageCtx.canvas.height = image.height;
-    imageCtx.drawImage(image, 0, 0);
-    image.data = imageCtx.getImageData(0, 0, image.width, image.height).data;
 
-    // Destroy the imageCanvas to free up memory
+    imageCanvas.width = width;
+    imageCanvas.height = height;
+
+    imageCtx.drawImage(image, 0, 0, width, height);
+
+    image.data = imageCtx.getImageData(0, 0, width, height).data;
+    image.width = width;
+    image.height = height;
+
+
     imageCanvas.remove();
 };
 
@@ -29,17 +37,26 @@ var openFile = function (file) {
 };
 
 
-const LINE_LENGTH = 20;
+const LINE_LENGTH = 15;
 
 async function drawBranches() {
+    let lastPosition = { x: image.width, y: image.height };
 
-    let lastPosition = { x: ctx.canvas.width / 2, y: ctx.canvas.height / 2 };
-    //ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    let previosImageDimensions = { width: image.width, height: image.height };
     while (true) {
+
         if (image.data === undefined) {
             await new Promise(resolve => setTimeout(resolve, 100));
             continue;
         }
+
+        // Check if a new image has been loaded. and reset position
+        if (image.width !== previosImageDimensions.width || image.height !== previosImageDimensions.height) {
+            //set random position on the new image
+            lastPosition = { x: Math.random() * image.width, y: Math.random() * image.height };
+            previosImageDimensions = { width: image.width, height: image.height };
+        }
+
         ctx.beginPath();
         ctx.moveTo(lastPosition.x, lastPosition.y);
 
@@ -76,8 +93,6 @@ function getColorAtPosition(x, y) {
     y = Math.floor(y);
 
     const index = (y * image.width + x) * 4;
-
-    console.log(`x: ${x}, y: ${y}, index: ${index}, r: ${image.data[index]}, g: ${image.data[index + 1]}, b: ${image.data[index + 2]}`);
     return `rgb(${image.data[index]}, ${image.data[index + 1]}, ${image.data[index + 2]})`;
 }
 
@@ -88,4 +103,19 @@ function getColorAtPosition(x, y) {
 
 
 
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
+drawBranches(); drawBranches(); drawBranches(); drawBranches();
 drawBranches(); drawBranches(); drawBranches(); drawBranches();
