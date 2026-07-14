@@ -63,7 +63,7 @@ function moveStars() {
     for (i = 0; i < layer.length; i++) {
       let [x, y] = layer[i];
 
-      if (x - mouseX > -50 && x - mouseX < 50 && y - mouseY > -50 && y - mouseY < 50 && mouseDown) {
+      if (x - mouseX > -80 && x - mouseX < 80 && y - mouseY > -80 && y - mouseY < 80 && mouseDown) {
         x = x - (x - mouseX) / 20;
         y = y - (y - mouseY) / 20;
       } else {
