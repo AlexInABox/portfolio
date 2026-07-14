@@ -54,3 +54,7 @@ async function loadBlogbloatEntry(path) {
 
     document.getElementById("blogBloatContent").innerHTML = DOMPurify.sanitize(marked.parse(data)) + "<hr />";
 }
+
+if (window.location.hash.split('#')[1] == "blogbloat" && window.location.hash.split('#')[2] != undefined) {
+    loadBlogbloatEntry("blogbloat/" + window.location.hash.split('#')[2] + ".md");
+}

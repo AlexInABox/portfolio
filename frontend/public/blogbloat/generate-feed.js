@@ -94,6 +94,8 @@ data.entries.forEach(entry => {
   const entryAbsoluteUrl = `${siteUrl}${entry.path}`;
   const entryId = entryAbsoluteUrl;
   const currentIsoString = new Date().toISOString();
+  const entryBaseName = path.basename(entry.path, '.md');
+  const entryLink = `https://alexinabox.de/#blogbloat#${entryBaseName}`;
 
   // Process markdown file and generate HTML for feed content
   const mdPath = path.join(publicDir, entry.path);
@@ -113,7 +115,7 @@ data.entries.forEach(entry => {
 
   xml += `  <entry>
     <title>${escapeXml(entry.title)}</title>
-    <link href="https://alexinabox.de/#blogbloat"/>
+    <link href="${escapeXml(entryLink)}"/>
     <id>${escapeXml(entryId)}</id>
     <updated>${currentIsoString}</updated>
     <published>${entryDate}</published>

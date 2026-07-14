@@ -140,7 +140,7 @@ const contentNameToId = Object.fromEntries(
   Object.entries(contentIdToName).map(([k, v]) => [v, +k])
 );
 
-function switchContent(contentButtonId) {
+function switchContent(contentButtonId, first) {
   const contentButtons = document.getElementsByClassName("contentButtons");
   for (let button of contentButtons) {
     button.className = "contentButtons";
@@ -159,18 +159,20 @@ function switchContent(contentButtonId) {
     }
   }
 
-  if (contentIdNumber != 1) {
-    const url = new URL(window.location);
-    url.hash = contentIdToName[contentIdNumber];
-    history.replaceState(null, "", url);
-  } else {
-    history.replaceState(null, "", window.location.pathname + window.location.search);
+  if (!first) {
+    if (contentIdNumber != 1) {
+      const url = new URL(window.location);
+      url.hash = contentIdToName[contentIdNumber];
+      history.replaceState(null, "", url);
+    } else {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
   }
 }
 
 
-if (contentNameToId[window.location.hash.slice(1)]) {
-  switchContent("content" + contentNameToId[window.location.hash.slice(1)] + "Button");
+if (contentNameToId[window.location.hash.split('#')[1]]) {
+  switchContent("content" + contentNameToId[window.location.hash.split('#')[1]] + "Button", true);
 }
 
 
