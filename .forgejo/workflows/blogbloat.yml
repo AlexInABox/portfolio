@@ -44,4 +44,11 @@ jobs:
           else
             git commit -m "chore(blogbloat): auto-generate atom.xml and sort entries"
             git push
+            
+            echo "Triggering frontend.yml workflow dispatch..."
+            curl -i -X POST \
+              -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Content-Type: application/json" \
+              "${{ github.api_url }}/repos/${{ github.repository }}/actions/workflows/frontend.yml/dispatches" \
+              -d '{"ref":"main"}'
           fi
