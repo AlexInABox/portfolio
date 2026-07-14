@@ -6,6 +6,9 @@
     "start": "wrangler dev --live-reload"
   },
   "devDependencies": {
-    "wrangler": "^4.105.0"
+    "dompurify": "^3.4.12",
+    "jsdom": "^29.1.1",
+    "marked": "^18.0.6",
+    "wrangler": "^4.110.0"
   }
 }

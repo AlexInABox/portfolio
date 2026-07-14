@@ -1,0 +1,47 @@
+name: Generate Blogbloat Feed
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/public/blogbloat/*.md'
+
+defaults:
+  run:
+    working-directory: frontend/public/blogbloat
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: 'npm'
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: frontend
+
+      - name: Generate Feed
+        run: node generate-feed.js
+
+      - name: Commit and Push changes
+        run: |
+          git config user.name "forgejo-actions[bot]"
+          git config user.email "forgejo-actions[bot]@noreply.localhost"
+          git add all.json atom.xml
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore(blogbloat): auto-generate atom.xml and sort entries"
+            git push
+          fi

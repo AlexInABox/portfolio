@@ -23,7 +23,13 @@ async function loadBlogbloatEntries() {
         oldEntries[0].parentNode.removeChild(oldEntries[0]);
     }
 
-    data.entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+    data.entries.sort((a, b) => {
+        const parse = (s) => {
+            const p = s.split('.');
+            return p.length === 3 ? new Date(p[2], p[1] - 1, p[0]) : new Date(s);
+        };
+        return parse(b.date) - parse(a.date);
+    });
 
 
     data.entries.forEach((entry) => {
