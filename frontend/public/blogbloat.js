@@ -1,3 +1,4 @@
+/*
 const blogbloatContainer = document.getElementById('content3');
 const blogBloatContent = document.getElementById('blogBloatContent');
 const blogBloatEntryList = document.getElementById('blogBloatEntryList');
@@ -58,3 +59,4 @@ async function loadBlogbloatEntry(path) {
 if (window.location.hash.split('#')[1] == "blogbloat" && window.location.hash.split('#')[2] != undefined) {
     loadBlogbloatEntry("blogbloat/" + window.location.hash.split('#')[2] + ".md");
 }
+    */

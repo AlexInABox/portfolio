@@ -123,6 +123,7 @@ addEventListener('mousemove', function (e) {
   getMousePosition(container, e);
 });
 
+/*
 document.body.onmousedown = function () {
   mouseDown = true;
 };
@@ -257,4 +258,51 @@ function isYesterday(dateString) {
   const yesterday = new Date();
   yesterday.setDate(yesterday.getDate() - 1);
   return day === yesterday.getDate() && month === yesterday.getMonth() + 1 && year === yesterday.getFullYear();
+}
+
+
+
+
+
+
+
+*/
+
+
+// NEWGEN: Above shall be moved
+
+async function checkContextSwitch() {
+  const pathName = window.location.pathname;
+  document.getElementById("contentContainer").querySelector('h1').textContent = pathName;
+  const container = document.getElementById("contentContainer").querySelector('div');
+
+  if (pathName === '/') return; //TODO: restore base / content if this isnt first load.
+
+  container.innerHTML = `<h1>Loading...</h1>`;
+
+
+  const [htmlRes, cssRes, jsRes] = await Promise.all([
+    fetch(pathName + "/index.html"),
+    fetch(pathName + "/index.css"),
+    fetch(pathName + "/index.js")
+  ]);
+
+  const html = await htmlRes.text();
+  const css = await cssRes.text();
+  const js = await jsRes.text();
+
+  console.log(html);
+  container.innerHTML = html;
+
+
+
+
+
+}
+checkContextSwitch();
+
+
+function gotoPage(newPageString) {
+  window.history.pushState('', '', newPageString);
+  checkContextSwitch();
 }

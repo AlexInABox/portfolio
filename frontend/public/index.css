@@ -1,12 +1,12 @@
 body {
-  background: black;
+  background: #212328;
   font-family: monospace;
   zoom: 1;
 }
 
 h1,
 p {
-  color: rgb(255, 255, 255);
+  color: #b9d2ee;
   text-align: center;
 }
 
@@ -24,7 +24,6 @@ p {
 #title img {
   width: 6rem;
   height: 6rem;
-
   margin: 2rem;
 }
 
@@ -36,18 +35,42 @@ p {
   width: 70%;
   max-width: 1080px;
   margin: 0 auto;
-  background-color: rgba(0, 0, 0, 0.7);
-  border-collapse: collapse;
 }
 
-#centered-table td,
-th {
-  border: 5px solid rgb(255, 255, 255);
+table {
+  border-spacing: 1rem;
+}
+
+td {
+  background-color: #24272ff0;
   padding: 1rem;
-  padding-top: 2.5rem;
-  text-align: center;
+  padding-bottom: 1rem;
   vertical-align: top;
-  position: relative;
+  text-align: center;
+}
+
+td * {
+  text-align: left;
+  font-size: large;
+}
+
+td a {
+  color: #f9c8c9;
+  text-decoration: none;
+}
+
+td a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+td > h1:first-child {
+  background-color: #2a3137;
+  color: #dae7f6;
+  margin: -1rem -1rem 1rem -1rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  font-size: x-large;
 }
 
 @media screen and (orientation: portrait) {
@@ -70,20 +93,6 @@ th {
 
     margin: 1rem;
   }
-}
-
-.cellTitle {
-  margin-left: -1rem;
-  margin-top: -2.5rem;
-  padding: 0.5rem;
-  color: rgb(255, 255, 255);
-  float: left;
-  border-style: solid;
-  border-color: rgb(255, 255, 255);
-  border-left: 0px;
-  border-top: 0px;
-  cursor: help;
-  font-weight: bold;
 }
 
 .showcaseImage {

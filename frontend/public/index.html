@@ -12,6 +12,7 @@
     />
 
     <meta charset="UTF-8" />
+    <link rel="icon" href="favicon/favicon.svg" type="image/svg+xml" />
     <link rel="icon" type="image/x-icon" href="favicon/favicon.ico" />
     <title>alexander</title>
     <meta name="description" content="Nothing can ever ruin this." />
@@ -29,97 +30,40 @@
         <h1>alexinabox.de</h1>
         <p id="subtitle">Nothing can ever ruin this</p>
       </div>
-      <img fetchpriority="high" src="assets/rose.webp" alt="Rose" />
+      <img fetchpriority="high" src="assets/rose.svg" alt="Rose" />
     </row>
+
+    <noscript
+      ><p style="text-align: center; color: red">
+        <strong>JavaScript is disabled in your browser.</strong> Most stuff wont work :( Please enable JavaScript for
+        the best experience.
+      </p></noscript
+    >
 
     <table id="centered-table">
       <tr>
-        <td rowspan="2">
-          <span class="cellTitle"
-            ><button
-              type="button"
-              class="activeContentButton contentButtons"
-              id="content1Button"
-              onclick="switchContent('content1Button')"
-            >
-              home
-            </button>
-            <button type="button" class="contentButtons" id="content2Button" onclick="switchContent('content2Button')">
-              blog
-            </button>
-            <button type="button" class="contentButtons" id="content3Button" onclick="switchContent('content3Button')">
-              blogbloat
-            </button>
-          </span>
-          <div id="content1" class="content">
-            <img class="showcaseImage" fetchpriority="high" src="assets/showcase.webp" />
-          </div>
-          <div id="content2" class="content hidden">
-            <h1 title="low-effort blogging" style="cursor: help">Blogslop</h1>
-
-            <div id="blogContent"></div>
-          </div>
-          <div id="content3" class="content hidden">
-            <div id="blogBloatContent">
-              <h1 title="high-effort blogging" style="cursor: help; text-align: center">Blogbloat</h1>
-            </div>
-            <div id="blogBloatEntryList"></div>
-          </div>
+        <td rowspan="3" id="contentContainer">
+          <h1 id="contentContainerTitle">/</h1>
+          <div></div>
         </td>
 
-        <td style="padding-top: 1rem; width: 35%">
-          <h1>Welcome to my intersite!</h1>
-          <p>Feel free to explore and learn more about me.</p>
-          <hr />
-          <p>
-            Besides working and studying CS in Berlin, I mostly work on my community game server called "Zeitvertreib"
-            for the game
-            <nobr>SCP: Secret Laboratory ^^</nobr>
-          </p>
-          <hr />
-          <p>I also love setting up Linux servers, whether it's VPSs or homelab stuff.</p>
-          <p>
-            Personally, I believe in raw Debian supremacy, but I also enjoy living on the edge with super scary Debian
-            Testing 👻
-          </p>
-          <hr />
-          <p>Computer forensics are super cool, and you should get into it!</p>
-          <hr />
-          <p>epoch 17.04.2005</p>
+        <td style="padding-top: 1rem; width: 30%">
+          <h1>sitemap:</h1>
+          <nav>
+            <a onclick="gotoPage('/')">/</a>
+            <br />
+            <a onclick="gotoPage('/me')">/me</a>
+            <br />
+            <a onclick="gotoPage('/blogslop')">/blogslop</a>
+            <br />
+            <a onclick="gotoPage('/blogbloat')">/blogbloat</a>
+            <br />
+          </nav>
         </td>
       </tr>
       <tr>
-        <td rowspan="2">
-          <span class="cellTitle">projects:</span>
-          <p class="projectItem" title="A browser extension to view other users' cursors on the page you're on.">
-            CursorConnect
-            <a href="https://addons.mozilla.org/en-US/firefox/addon/cursorconnect/" target="_blank"> @mozilla.org</a>
-            or
-            <a href="https://github.com/AlexInABox/CursorConnect" target="_blank"> @github</a>
-          </p>
-          <p class="projectItem" title="A uni project where we built a game using Godot!">
-            GrowGreen
-            <a href="https://github.com/AlexInABox/grow-green" target="_blank"> @github </a>
-          </p>
-          <p
-            class="projectItem"
-            title="An SCP:SL plugin that I forked and now maintain! It got some downloadies so I guess it's kinda populars?"
-          >
-            RoundReports
-            <a href="https://github.com/AlexInABox/RoundReports" target="_blank"> @github </a>
-          </p>
-          <p
-            class="projectItem"
-            title="A uni project where we visualized a part of the Readers-Writers IPC problem in Golang!!"
-          >
-            network-interaction
-            <a href="https://github.com/theoleuthardt/network-interaction" target="_blank"> @github </a>
-          </p>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <span class="cellTitle" title='"Holy shit, Lois, look - it&apos;s a webring!"'>the interweb:</span>
+        <td rowspan="1">
+          <h1>the interweb:</h1>
           <a href="https://alexinabox.de"
             ><img
               class="webringImage"
@@ -131,21 +75,21 @@
           <a href="https://theocloud.dev/" target="_blank"
             ><img
               class="webringImage"
-              src="assets/webring/theocloud.png"
+              src="https://majas.blog/buttons/theo-button.gif"
               title="theo's personal website"
               alt="theocloud.dev"
           /></a>
           <a href="https://lagopodus.dev" target="_blank"
             ><img
               class="webringImage"
-              src="assets/webring/lagopodus.png"
+              src="https://majas.blog/buttons/josh-button.gif"
               title="lagopodus' personal website"
               alt="https://lagopodus.dev"
           /></a>
           <a href="https://diewilhelms.de" target="_blank"
             ><img
               class="webringImage"
-              src="assets/webring/auriomtex.png"
+              src="https://majas.blog/buttons/domi-button.gif"
               title="auriomtex' personal website"
               alt="https://diewilhelms.de"
           /></a>
@@ -180,14 +124,16 @@
             frameborder="0"
             alt="http://incr.easrng.net"
           ></iframe>
-          <a href="http://validator.w3.org/feed/check.cgi?url=https%3A//alexinabox.de/blogbloat/atom.xml"
-            ><img
-              src="assets/webring/valid-atom.png"
-              class="webringImage"
-              alt="[Valid Atom 1.0]"
-              title="Validate my Atom 1.0 feed"
-              alt="http://validator.w3.org"
-          /></a>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h1>settings:</h1>
+          <div><h1>settings:</h1></div>
+          <span style="display: flex; align-items: center; gap: 0.5rem">
+            <label for="toggleBackgroundStars"><p>background stars</p></label>
+            <input type="checkbox" id="toggleBackgroundStars" checked
+          /></span>
         </td>
       </tr>
     </table>
