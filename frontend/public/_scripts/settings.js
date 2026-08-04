@@ -10,4 +10,7 @@ document.getElementById("backgroundStarsActive").addEventListener('change', func
     setValueForSetting("backgroundStarsActive", this.checked);
 });
 
+if (getValueForSetting("backgroundStarsActive") === null) {
+    setValueForSetting("backgroundStarsActive", true);
+}
 document.getElementById("backgroundStarsActive").checked = getValueForSetting("backgroundStarsActive") === "true";
