@@ -155,65 +155,8 @@ button.activeContentButton {
 }
 
 .mailmeFooter {
-}
-
-/* Make scrollbars light to match the overall design */
-* {
-  scrollbar-color: #ccc #000;
-  scrollbar-width: auto;
-}
-*::-webkit-scrollbar {
-  width: 12px;
-}
-*::-webkit-scrollbar-track {
-  background: #000;
-}
-*::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 6px;
-  border: 3px solid #000;
-}
-
-#blogContent {
-  overflow-y: auto;
-}
-
-.blogImage {
-  display: block;
-  margin-right: auto;
-  margin-top: 0rem;
-  margin-bottom: 1rem;
-  max-width: 100%;
-  cursor: pointer;
-}
-
-.blogTextContainer h1 {
-  margin-top: 0;
-  text-align: right;
-}
-
-.blogTextContainer p {
-  display: block;
-  text-align: justify;
-  word-break: break-word;
-  align-items: right;
-  font-size: 0.9rem;
-}
-
-.blogHtml {
-  margin-left: auto;
-  margin-right: 2rem;
-}
-
-.singleBlogContainer {
-  padding-left: 2rem;
-
-  display: grid;
-  grid-template-columns: 2fr 3fr;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.singleBlogContainer > :only-child {
-  grid-column: 1 / -1; /* If there is no image, we the text to take full width!! */
+  background-color: #2123289a;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 0.5rem;
 }

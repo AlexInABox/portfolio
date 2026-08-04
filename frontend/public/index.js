@@ -1,275 +1,4 @@
-const container = document.getElementById('starBackground');
-const ctx = container.getContext('2d');
-ctx.canvas.width = window.innerWidth;
-ctx.canvas.height = window.innerHeight;
-
-let mouseX = 0;
-let mouseY = 0;
-let mouseDown = false;
-
-const numStars = 1500;
-let listOfLayer1Stars = [[0, 0]];
-let listOfLayer2Stars = [[0, 0]];
-let listOfLayer3Stars = [[0, 0]];
-const layer1Size = 0.5;
-const layer2Size = 1;
-const layer3Size = 1.5;
-
-let listOfConstellation1Group = []; // This is the list of indexes of the stars in the layer3 list!
-
-
-function initializeBackground() {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-  listOfLayer1Stars = [[0, 0]];
-  listOfLayer2Stars = [[0, 0]];
-  listOfLayer3Stars = [[0, 0]];
-
-  function place(layer, size) {
-    for (let i = 0; i < numStars / 3; i++) {
-      const x = (Math.random() * ctx.canvas.width) % ctx.canvas.width;
-      const y = (Math.random() * ctx.canvas.height) % ctx.canvas.height;
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, 2 * Math.PI);
-      ctx.fillStyle = 'white';
-      ctx.fill();
-
-      layer[layer.length] = [x, y];
-    }
-  }
-  place(listOfLayer1Stars, layer1Size);
-  place(listOfLayer2Stars, layer2Size);
-  place(listOfLayer3Stars, layer3Size);
-
-
-  const randomConstellationX = (Math.random() * ctx.canvas.width) % ctx.canvas.width;
-  const randomConstellationY = (Math.random() * ctx.canvas.height) % ctx.canvas.height;
-  const threshold = 125; //distance from constellation center to consider a star part of the constellation
-
-  for (let i = 0; i < listOfLayer3Stars.length; i++) {
-    if (listOfConstellation1Group.length >= 7) break; // Limit the number of stars in the constellation
-    const [x, y] = listOfLayer3Stars[i];
-    const distance = Math.sqrt((x - randomConstellationX) ** 2 + (y - randomConstellationY) ** 2);
-    if (distance < threshold) {
-      listOfConstellation1Group.push(i);
-    }
-  }
-}
-initializeBackground();
-
-function moveStars() {
-  ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-  function move(layer, speed, size) {
-    for (i = 0; i < layer.length; i++) {
-      let [x, y] = layer[i];
-
-      if (x - mouseX > -80 && x - mouseX < 80 && y - mouseY > -80 && y - mouseY < 80 && mouseDown) {
-        x = x - (x - mouseX) / 20;
-        y = y - (y - mouseY) / 20;
-      } else {
-        x = (x + speed) % ctx.canvas.width;
-        y = (y + speed) % ctx.canvas.height;
-      }
-
-      ctx.beginPath();
-      ctx.arc(x, y, size, 0, 2 * Math.PI);
-      ctx.fillStyle = 'white';
-      ctx.fill();
-      layer[i] = [x, y];
-    }
-  }
-
-  move(listOfLayer1Stars, 0.25, layer1Size);
-  move(listOfLayer2Stars, 0.45, layer2Size);
-  move(listOfLayer3Stars, 0.65, layer3Size);
-
-  let lastPosition = { x: listOfLayer3Stars[listOfConstellation1Group[0]][0], y: listOfLayer3Stars[listOfConstellation1Group[0]][1] };
-  ctx.beginPath();
-  ctx.moveTo(lastPosition.x, lastPosition.y);
-
-  for (let i = 1; i < listOfConstellation1Group.length; i++) {
-    const [x, y] = listOfLayer3Stars[listOfConstellation1Group[i]];
-
-    // If line is too long, skip drawing it
-    const distance = Math.sqrt((x - lastPosition.x) ** 2 + (y - lastPosition.y) ** 2);
-    if (distance > 200) {
-      lastPosition = { x, y };
-      ctx.moveTo(x, y);
-      continue;
-    }
-
-    ctx.lineTo(x, y);
-    lastPosition = { x, y };
-  }
-  ctx.strokeStyle = 'red';
-  ctx.lineWidth = 2;
-  ctx.stroke();
-}
-setInterval(() => moveStars(), 10);
-
-addEventListener('resize', (_) => {
-  ctx.canvas.width = window.innerWidth;
-  ctx.canvas.height = window.innerHeight;
-
-  initializeBackground();
-});
-
-addEventListener('mousemove', function (e) {
-  function getMousePosition(canvas, event) {
-    let rect = canvas.getBoundingClientRect();
-    mouseX = event.clientX - rect.left;
-    mouseY = event.clientY - rect.top;
-  }
-  getMousePosition(container, e);
-});
-
-/*
-document.body.onmousedown = function () {
-  mouseDown = true;
-};
-document.body.onmouseup = function () {
-  mouseDown = false;
-};
-
-const contentIdToName = {
-  1: "home",
-  2: "blog",
-  3: "blogbloat"
-}
-
-const contentNameToId = Object.fromEntries(
-  Object.entries(contentIdToName).map(([k, v]) => [v, +k])
-);
-
-function switchContent(contentButtonId, first) {
-  const contentButtons = document.getElementsByClassName("contentButtons");
-  for (let button of contentButtons) {
-    button.className = "contentButtons";
-    if (button.id == contentButtonId) {
-      button.className = "activeContentButton contentButtons"
-    }
-  }
-
-  const contents = document.getElementsByClassName("content");
-  const contentId = contentButtonId.replace('Button', '');
-  const contentIdNumber = contentId.replace('content', '');
-  for (let content of contents) {
-    content.className = "content hidden";
-    if (content.id == contentId) {
-      content.className = "content";
-    }
-  }
-
-  if (!first) {
-    if (contentIdNumber != 1) {
-      const url = new URL(window.location);
-      url.hash = contentIdToName[contentIdNumber];
-      history.replaceState(null, "", url);
-    } else {
-      history.replaceState(null, "", window.location.pathname + window.location.search);
-    }
-  }
-}
-
-
-if (contentNameToId[window.location.hash.split('#')[1]]) {
-  switchContent("content" + contentNameToId[window.location.hash.split('#')[1]] + "Button", true);
-}
-
-
-
-const blogContent = document.getElementById('blogContent');
-const td = blogContent.parentElement;
-// If the cells height changes, we make sure the blog content doesnt extend too far, as to not grow the td again.
-const observer = new ResizeObserver(() => {
-  blogContent.style.maxHeight = td.clientHeight * 0.9 + 'px';
-});
-
-observer.observe(td);
-
-
-async function findBlogs() {
-  const blogs = [];
-  let i = 1;
-
-  while (true) {
-    const url = `/blogs/${i}.json`;
-    const res = await fetch(url, { method: 'HEAD' }); // just check if it exists
-    if (!res.ok) break; // stop on first 404
-    blogs.push(i);
-    i++;
-  }
-
-  return blogs;
-}
-
-async function loadBlogs() {
-  const blogIds = (await findBlogs()).reverse();
-
-  for (const blogId of blogIds) {
-    const blogJson = await fetch(`/blogs/${blogId}.json`);
-    if (!blogJson.ok) continue;
-
-    const blogContainer = document.createElement('div');
-    blogContainer.className = 'singleBlogContainer';
-
-    const img = document.createElement('img');
-    img.src = `/blogs/${blogId}.webp`;
-    img.className = 'blogImage';
-    img.alt = 'blog image';
-    img.onerror = () => img.remove();
-    img.onclick = () => {
-      window.open(`/blogs/${blogId}.png`, '_blank');
-    }
-
-    blogContainer.appendChild(img);
-
-    const data = await blogJson.json();
-    const blogTextContainer = document.createElement('div');
-    blogTextContainer.className = 'blogTextContainer';
-
-    blogTextContainer.innerHTML += `<h1 class="blogHtml">${data.date}</h1>`;
-    if (isToday(data.date)) {
-      blogTextContainer.innerHTML = `<h1 class="blogHtml">Today</h1>`;
-    }
-    if (isYesterday(data.date)) {
-      blogTextContainer.innerHTML = `<h1 class="blogHtml">Yesterday</h1>`;
-    }
-
-    for (const paragraphs of data.html) {
-      blogTextContainer.innerHTML += `<p class="blogHtml">${paragraphs}</p>`;
-    }
-    blogContainer.appendChild(blogTextContainer);
-    blogContent.appendChild(blogContainer);
-  }
-}
-
-loadBlogs();
-
-
-function isToday(dateString) {
-  const [day, month, year] = dateString.split('.').map(Number);
-  const today = new Date();
-  return day === today.getDate() && month === today.getMonth() + 1 && year === today.getFullYear();
-}
-
-function isYesterday(dateString) {
-  const [day, month, year] = dateString.split('.').map(Number);
-  const yesterday = new Date();
-  yesterday.setDate(yesterday.getDate() - 1);
-  return day === yesterday.getDate() && month === yesterday.getMonth() + 1 && year === yesterday.getFullYear();
-}
-
-
-
-
-
-
-
-*/
-
-
-// NEWGEN: Above shall be moved
+let currentContextStyle = null;
 
 async function checkContextSwitch() {
   const pathName = window.location.pathname;
@@ -278,31 +7,56 @@ async function checkContextSwitch() {
 
   if (pathName === '/') return; //TODO: restore base / content if this isnt first load.
 
+
+  // CLEANUP EARLIER CONTEXT
   container.innerHTML = `<h1>Loading...</h1>`;
+  currentContextStyle?.remove();
+  currentContextStyle = null;
 
 
+  // LOAD NEW CONTEXT
   const [htmlRes, cssRes, jsRes] = await Promise.all([
     fetch(pathName + "/index.html"),
-    fetch(pathName + "/index.css"),
-    fetch(pathName + "/index.js")
+    fetch(pathName + "/index.css")
   ]);
 
-  const html = await htmlRes.text();
-  const css = await cssRes.text();
-  const js = await jsRes.text();
+  if (!htmlRes.ok) {
+    container.innerHTML = "<h1>NOT FOUND</h1>";
+    return;
+  }
 
-  console.log(html);
-  container.innerHTML = html;
+  container.innerHTML = await htmlRes.text();
 
+  if (cssRes.ok) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = `${pathName}/index.css`;
+    document.head.appendChild(link);
 
+    currentContextStyle = link;
+  }
 
+  try {
+    const contextModule = await import(`${pathName}/index.js`);
 
+    if (contextModule.mount) {
+      contextModule.mount(container);
+    }
 
+    currentContextScript = contextModule;
+
+  } catch (err) {
+    // index.js does not exist or failed
+  }
 }
 checkContextSwitch();
 
 
 function gotoPage(newPageString) {
   window.history.pushState('', '', newPageString);
+  if (newPageString === '/') {
+    window.location.reload();
+    return; //Return wont call probably, but just in case :3
+  }
   checkContextSwitch();
 }

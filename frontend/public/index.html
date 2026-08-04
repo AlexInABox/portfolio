@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="blogbloat.css" />
 
     <link
       rel="alternate"
@@ -70,6 +69,8 @@
               src="assets/webring/alexinabox.png"
               title="hey that's my website..."
               alt="alexinabox.de"
+              width="88"
+              height="31"
           /></a>
 
           <a href="https://theocloud.dev/" target="_blank"
@@ -78,6 +79,8 @@
               src="https://majas.blog/buttons/theo-button.gif"
               title="theo's personal website"
               alt="theocloud.dev"
+              width="88"
+              height="31"
           /></a>
           <a href="https://lagopodus.dev" target="_blank"
             ><img
@@ -85,6 +88,8 @@
               src="https://majas.blog/buttons/josh-button.gif"
               title="lagopodus' personal website"
               alt="https://lagopodus.dev"
+              width="88"
+              height="31"
           /></a>
           <a href="https://diewilhelms.de" target="_blank"
             ><img
@@ -92,6 +97,8 @@
               src="https://majas.blog/buttons/domi-button.gif"
               title="auriomtex' personal website"
               alt="https://diewilhelms.de"
+              width="88"
+              height="31"
           /></a>
           <a href="https://alice.herkula.info" target="_blank"
             ><img
@@ -99,6 +106,8 @@
               src="assets/webring/alice_meower.png"
               title="alice_moewer's personal website"
               alt="https://alice.herkula.info"
+              width="88"
+              height="31"
           /></a>
           <a href="https://majas.blog/" target="_blank"
             ><img
@@ -106,6 +115,8 @@
               title="maja's personal blog"
               src="https://majas.blog/buttons/maja-button.gif"
               alt="https://majas.blog"
+              width="88"
+              height="31"
           /></a>
           <a href="https://brainmade.org/" target="_blank"
             ><img
@@ -113,6 +124,8 @@
               src="assets/webring/brainmade.png"
               title="brainmade.org"
               alt="https://brainmade.org/"
+              width="88"
+              height="31"
           /></a>
           <iframe
             class="webringImage"
@@ -129,10 +142,9 @@
       <tr>
         <td>
           <h1>settings:</h1>
-          <div><h1>settings:</h1></div>
           <span style="display: flex; align-items: center; gap: 0.5rem">
-            <label for="toggleBackgroundStars"><p>background stars</p></label>
-            <input type="checkbox" id="toggleBackgroundStars" checked
+            <label for="backgroundStarsActive"><p>moving stars?</p></label>
+            <input type="checkbox" id="backgroundStarsActive" unchecked
           /></span>
         </td>
       </tr>
@@ -143,7 +155,8 @@
     </p>
     <script type="text/javascript" src="cdn/marked.umd.js"></script>
     <script type="text/javascript" src="cdn/purify.min.js"></script>
+    <script type="text/javascript" src="_scripts/settings.js" defer fetchpriority="low"></script>
+    <script type="text/javascript" src="_scripts/stars.js" defer fetchpriority="low"></script>
     <script type="text/javascript" src="index.js" defer fetchpriority="low"></script>
-    <script type="text/javascript" src="blogbloat.js" defer fetchpriority="low"></script>
   </body>
 </html>
