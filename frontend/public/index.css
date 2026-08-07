@@ -5,9 +5,13 @@ body {
 }
 
 h1,
+h2,
 p {
   color: #b9d2ee;
-  text-align: center;
+}
+
+h2 {
+  font-size: x-large;
 }
 
 #title {
@@ -49,17 +53,22 @@ td {
   text-align: center;
 }
 
-td * {
+td {
   text-align: left;
   font-size: large;
 }
 
-td a {
+td.webring {
+  text-align: center;
+}
+
+a {
+  font-weight: bold;
   color: #f9c8c9;
   text-decoration: none;
 }
 
-td a:hover {
+a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -71,6 +80,7 @@ td > h1:first-child {
   padding: 0.5rem;
   padding-left: 1rem;
   font-size: x-large;
+  text-align: left;
 }
 
 @media screen and (orientation: portrait) {
@@ -95,28 +105,11 @@ td > h1:first-child {
   }
 }
 
-.showcaseImage {
-  width: 90%;
-  margin: 1rem;
-  margin-bottom: 0;
-}
-
 /* Webring styles */
 .webringImage {
   max-width: 88px;
   max-height: 31px;
   margin: 0.5rem;
-}
-
-/* Project items */
-.projectItem {
-  cursor: help;
-}
-.projectItem a,
-.mailMeLink {
-  font-weight: bold;
-  color: #f39395;
-  text-decoration: #f39395 underline;
 }
 
 /* Star background */
@@ -125,33 +118,6 @@ td > h1:first-child {
   top: 0;
   left: 0;
   z-index: -1;
-}
-
-button {
-  border-width: 0.15rem;
-  border-style: solid;
-  border-color: white;
-  text-align: center;
-  display: inline-block;
-  font-size: 0.9rem;
-  margin: 0 0.2rem;
-  cursor: pointer;
-  background-color: white;
-  font-family: monospace;
-  font-weight: bold;
-  padding: 0.1rem 0.3rem;
-}
-
-button.activeContentButton {
-  background: transparent;
-  color: white;
-}
-
-.content {
-  display: none;
-}
-.content:not(.hidden) {
-  display: block;
 }
 
 .mailmeFooter {
