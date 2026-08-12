@@ -2,7 +2,12 @@ let currentContextStyle = null;
 
 async function checkContextSwitch() {
   const pathName = window.location.pathname;
-  document.getElementById("contentContainer").querySelector('h1').textContent = pathName;
+  const musicPlayingNow = document.getElementById("musicPlayingNow");
+
+  document.getElementById("contentContainer").querySelector('h1').innerHTML = `${pathName}`;
+  document.getElementById("contentContainer").querySelector('h1').appendChild(musicPlayingNow);
+
+
   const container = document.getElementById("contentContainer").querySelector('div');
 
   if (pathName === '/') return; //TODO: restore base / content if this isnt first load.

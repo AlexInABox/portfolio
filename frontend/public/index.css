@@ -83,6 +83,17 @@ td > h1:first-child {
   text-align: left;
 }
 
+#contentContainerTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline; /* keeps text aligned nicely instead of stretching */
+}
+
+#musicPlayingNow {
+  font-size: medium;
+  margin-left: 0.5rem; /* just in case */
+}
+
 @media screen and (orientation: portrait) {
   #centered-table,
   #centered-table tr,
