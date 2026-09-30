@@ -13,19 +13,18 @@
 // passed through unchanged. Everything else serves `/index.html`.
 
 export default {
-    fetch(request: Request, env: { ASSETS: Fetcher }) {
-        const url = new URL(request.url);
+  fetch(request: Request, env: { ASSETS: Fetcher }) {
+    const url = new URL(request.url);
 
-        // Canonicalize trailing slashes so relative asset URLs behave correctly.
-        if (url.pathname.length > 1 && url.pathname.endsWith("/")) {
-            url.pathname = url.pathname.slice(0, -1);
-            return Response.redirect(url, 308);
-        }
+    // Canonicalize trailing slashes so relative asset URLs behave correctly.
+    if (url.pathname.length > 1 && url.pathname.endsWith('/')) {
+      url.pathname = url.pathname.slice(0, -1);
+      return Response.redirect(url, 308);
+    }
 
-        // No extension? Treat it as a client-side route.
-        if (!url.pathname.split("/").pop()?.includes("."))
-            url.pathname = "/index.html";
+    // No extension? Treat it as a client-side route.
+    if (!url.pathname.split('/').pop()?.includes('.')) url.pathname = '/index.html';
 
-        return env.ASSETS.fetch(new Request(url, request));
-    },
+    return env.ASSETS.fetch(new Request(url, request));
+  },
 };

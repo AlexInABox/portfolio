@@ -1,13 +1,11 @@
 {
-    "entries": [
-        {
-            "title": "Why do we reason?",
-            "description": "A deepdive into reasoning.",
-            "date": "01.07.2026",
-            "tags": [
-                "philosophy"
-            ],
-            "path": "blogbloat/1.md"
-        }
-    ]
+  "entries": [
+    {
+      "title": "Why do we reason?",
+      "description": "A deepdive into reasoning.",
+      "date": "01.07.2026",
+      "tags": ["philosophy"],
+      "path": "blogbloat/1.md"
+    }
+  ]
 }

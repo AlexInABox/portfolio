@@ -59,12 +59,18 @@ function escapeXml(unsafe) {
   if (typeof unsafe !== 'string') return '';
   return unsafe.replace(/[<>&'"]/g, (c) => {
     switch (c) {
-      case '<': return '&lt;';
-      case '>': return '&gt;';
-      case '&': return '&amp;';
-      case '\'': return '&apos;';
-      case '"': return '&quot;';
-      default: return c;
+      case '<':
+        return '&lt;';
+      case '>':
+        return '&gt;';
+      case '&':
+        return '&amp;';
+      case "'":
+        return '&apos;';
+      case '"':
+        return '&quot;';
+      default:
+        return c;
     }
   });
 }
@@ -89,7 +95,7 @@ let xml = `<?xml version="1.0" encoding="utf-8"?>
   </author>
 `;
 
-data.entries.forEach(entry => {
+data.entries.forEach((entry) => {
   const entryDate = parseDateUTC(entry.date).toISOString();
   const entryAbsoluteUrl = `${siteUrl}${entry.path}`;
   const entryId = entryAbsoluteUrl;
@@ -124,7 +130,7 @@ data.entries.forEach(entry => {
 `;
 
   if (entry.tags && entry.tags.length > 0) {
-    entry.tags.forEach(tag => {
+    entry.tags.forEach((tag) => {
       xml += `    <category term="${escapeXml(tag)}"/>\n`;
     });
   }
