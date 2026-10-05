@@ -22,6 +22,13 @@ export default {
       return Response.redirect(url, 308);
     }
 
+    // .well-known paths are real files even when the final segment has no
+    // extension (e.g. the Web Key Directory hash and /discord). Never apply
+    // the SPA fallback to them.
+    if (url.pathname.startsWith('/.well-known/')) {
+      return env.ASSETS.fetch(new Request(url, request));
+    }
+
     // No extension? Treat it as a client-side route.
     if (!url.pathname.split('/').pop()?.includes('.')) url.pathname = '/index.html';
 
