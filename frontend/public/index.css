@@ -123,6 +123,16 @@ td > h1:first-child {
   margin: 0.5rem;
 }
 
+.spinning {
+  animation: spin 6s linear infinite;
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
 /* Star background */
 #starBackground {
   position: fixed;

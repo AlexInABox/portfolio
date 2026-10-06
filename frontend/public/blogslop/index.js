@@ -1,4 +1,5 @@
-import { decodeBlurhash } from '/_scripts/blurhash.js';
+const MASTODON_BASE_URL = 'https://mastodon.zeitvertreib.vip/api/v1';
+const MASTODON_ACCOUNT_ID = '117382301019209994';
 
 export function mount() {
   const blogContent = document.getElementById('blogslopContainer');
@@ -22,90 +23,59 @@ export function mount() {
     return day === yesterday.getDate() && month === yesterday.getMonth() + 1 && year === yesterday.getFullYear();
   }
 
-  async function loadBlogs() {
+  async function loadPosts() {
     try {
-      const res = await fetch('/blogslop/blogs/blogs.json');
+      const res = await fetch(
+        MASTODON_BASE_URL + '/accounts/' + MASTODON_ACCOUNT_ID + '/statuses?exclude_replies=true&exclude_reblogs=true',
+      );
       if (!res.ok) return;
-      const blogs = await res.json();
+      const posts = await res.json();
 
-      const blogList = [...blogs].reverse();
-
-      for (const blog of blogList) {
+      for (const post of posts) {
         const blogContainer = document.createElement('div');
         blogContainer.className = 'singleBlogContainer';
 
-        if (blog.image) {
+        if (post.media_attachments[0]) {
           const wrapper = document.createElement('div');
           wrapper.className = 'blogImageWrapper';
 
-          if (blog.width && blog.height) {
-            wrapper.style.aspectRatio = `${blog.width} / ${blog.height}`;
-          }
-
-          let canvas = null;
-          if (blog.blurhash) {
-            canvas = document.createElement('canvas');
-            const w = blog.width || 32;
-            const h = blog.height || 24;
-            const scale = Math.min(1, 32 / w);
-            const cWidth = Math.max(1, Math.round(w * scale));
-            const cHeight = Math.max(1, Math.round(h * scale));
-
-            canvas.width = cWidth;
-            canvas.height = cHeight;
-            canvas.className = 'blogBlurhashCanvas';
-
-            const ctx = canvas.getContext('2d');
-            if (ctx) {
-              const pixels = decodeBlurhash(blog.blurhash, cWidth, cHeight);
-              const imgData = ctx.createImageData(cWidth, cHeight);
-              imgData.data.set(pixels);
-              ctx.putImageData(imgData, 0, 0);
-            }
-            wrapper.appendChild(canvas);
-          }
+          wrapper.style.aspectRatio = `${post.media_attachments[0].meta.original.width} / ${post.media_attachments[0].meta.original.height}`;
 
           const img = document.createElement('img');
-          img.src = `/blogslop/blogs/${blog.image}`;
-          img.className = 'blogImage' + (blog.blurhash ? ' has-blurhash' : '');
+          img.src = post.media_attachments[0].url;
+          img.className = 'blogImage';
           img.alt = 'blog image';
-
-          img.onload = () => {
-            img.classList.add('loaded');
-            if (canvas) {
-              setTimeout(() => {
-                canvas.style.opacity = '0';
-              }, 400);
-            }
-          };
 
           img.onerror = () => {
             wrapper.remove();
           };
 
           img.onclick = () => {
-            window.open(`/blogslop/blogs/${blog.image}`, '_blank');
+            window.open(post.uri, '_blank');
           };
 
           wrapper.appendChild(img);
           blogContainer.appendChild(wrapper);
         }
 
-        if (blog.html && blog.html.length > 0) {
-          const blogTextContainer = document.createElement('div');
-          blogTextContainer.className = 'blogTextContainer';
+        const blogTextContainer = document.createElement('div');
+        blogTextContainer.className = 'blogTextContainer';
 
-          let dateHeading = blog.date;
-          if (isToday(blog.date)) dateHeading = 'Today';
-          if (isYesterday(blog.date)) dateHeading = 'Yesterday';
+        const date = new Date(post.created_at);
+        let formatted_date = date.toLocaleDateString('de-DE', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        });
+        if (isToday(formatted_date)) formatted_date = 'Today';
+        if (isYesterday(formatted_date)) formatted_date = 'Yesterday';
 
-          blogTextContainer.innerHTML += `<h1 class="blogHtml">${dateHeading}</h1>`;
+        blogTextContainer.innerHTML += `<h1 class="blogHtml"> <a href="${post.uri}" target="_blank">${formatted_date}</a></h1>`;
 
-          for (const paragraph of blog.html) {
-            blogTextContainer.innerHTML += `<p class="blogHtml">${paragraph}</p>`;
-          }
-          blogContainer.appendChild(blogTextContainer);
+        if (post.content) {
+          blogTextContainer.innerHTML += `<p class="blogHtml">${post.content}</p>`;
         }
+        blogContainer.appendChild(blogTextContainer);
 
         blogContent.appendChild(blogContainer);
       }
@@ -114,5 +84,5 @@ export function mount() {
     }
   }
 
-  loadBlogs();
+  loadPosts();
 }

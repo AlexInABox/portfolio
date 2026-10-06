@@ -1,0 +1,9 @@
+#me_page_header {
+  display: flex;
+  gap: 1.5rem;
+}
+
+#me_page_header img {
+  width: 20rem;
+  height: 20rem;
+}
