@@ -5,12 +5,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'frontend/**'
-
-defaults:
-  run:
-    working-directory: frontend
 
 jobs:
   deploy:
