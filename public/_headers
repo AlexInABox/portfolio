@@ -3,3 +3,7 @@
 
 /.well-known/openpgpkey/hu/*
   Content-Type: application/octet-stream
+
+/.well-known/pgp/*
+  Content-Type: text/plain; charset=utf-8
+  Content-Disposition: inline
