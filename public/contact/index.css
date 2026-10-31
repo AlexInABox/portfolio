@@ -22,6 +22,7 @@ code {
   font-size: medium;
 }
 
-p {
+/* Lets not poison other p elements on the site ( title ) */
+#contactContainer p {
   line-height: 170%;
 }
