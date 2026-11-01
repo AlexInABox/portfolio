@@ -17,6 +17,11 @@ const layer3Size = 1.5;
 
 let listOfConstellation1Group = []; // This is the list of indexes of the stars in the layer3 list!
 
+const numComets = 10;
+let listOfCometPositions = [[0, 0]];
+let listOfCometVelocities = [[0, 0]];
+const maxVelocity = 5;
+
 function initializeBackground() {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
   listOfLayer1Stars = [[0, 0]];
@@ -51,8 +56,51 @@ function initializeBackground() {
       listOfConstellation1Group.push(i);
     }
   }
+
+
+  // place the comets
+  for (let i = 0; i < numComets; i++) {
+    const x = (Math.random() * ctx.canvas.width) % ctx.canvas.width;
+    const y = (Math.random() * ctx.canvas.height) % ctx.canvas.height;
+    listOfCometPositions[i] = [x, y];
+    listOfCometVelocities[i] = [0, 0];
+  }
 }
 initializeBackground();
+
+function moveAndDrawComet() {
+  listOfCometPositions.forEach((comet, index) => {
+    let [x, y] = comet;
+    let [velX, velY] = listOfCometVelocities[index];
+    let [targetX, targetY] = [mouseX, mouseY];
+
+    let [directionX, directionY] = [targetX - x, targetY - y];
+    let distance = Math.hypot(directionX, directionY);
+
+    velX += (directionX / distance) * 0.1;
+    velY += (directionY / distance) * 0.1;
+
+    velX = Math.min(velX, maxVelocity);
+    velY = Math.min(velY, maxVelocity);
+
+    if (x > ctx.canvas.width) velX -= 2;
+    if (x < 0) velX += 2;
+    if (y > ctx.canvas.height) velY -= 2;
+    if (y < 0) velY += 2;
+
+    x += velX;
+    y += velY;
+
+    listOfCometVelocities[index] = [velX, velY];
+    listOfCometPositions[index] = [x, y];
+
+    ctx.beginPath();
+    ctx.arc(x, y, layer3Size, 0, 2 * Math.PI);
+    ctx.fillStyle = 'white';
+    ctx.fill();
+
+  });
+}
 
 function moveStars() {
   if (getValueForSetting('backgroundStarsActive') !== 'true') return;
@@ -107,6 +155,8 @@ function moveStars() {
   ctx.strokeStyle = 'red';
   ctx.lineWidth = 2;
   ctx.stroke();
+
+  moveAndDrawComet();
 }
 setInterval(() => moveStars(), 10);
 
