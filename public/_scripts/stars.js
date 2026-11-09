@@ -57,7 +57,6 @@ function initializeBackground() {
     }
   }
 
-
   // place the comets
   for (let i = 0; i < numComets; i++) {
     const x = (Math.random() * ctx.canvas.width) % ctx.canvas.width;
@@ -98,7 +97,6 @@ function moveAndDrawComet() {
     ctx.arc(x, y, layer3Size, 0, 2 * Math.PI);
     ctx.fillStyle = 'white';
     ctx.fill();
-
   });
 }
 
